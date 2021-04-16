@@ -37,18 +37,25 @@ int trieTest()
 		cout << m;
 		cout << t.root() << endl;
 		cout << hash256(StringMap()) << endl;
-
+    
 		t.insert(string("tesz"), string("test"));
 		cout << t;
 		cout << m;
 		cout << t.root() << endl;
-		cout << hash256({{"test", "test"}}) << endl;
+        StringMap test1;
+        test1["test"] = "test";
+		//cout << hash256({{"test", "test"}}) << endl;
+		cout << hash256(test1) << endl;
 
 		t.insert(string("tesa"), string("testy"));
 		cout << t;
 		cout << m;
 		cout << t.root() << endl;
-		cout << hash256({{"test", "test"}, {"te", "testy"}}) << endl;
+        StringMap test2;
+        test2["test"] = "test";
+        test2["te"] = "testy";
+		cout << hash256(test2) << endl;
+		//cout << hash256({{"test", "test"}, {"te", "testy"}}) << endl;
 		cout << t.at(string("test")) << endl;
 		cout << t.at(string("te")) << endl;
 		cout << t.at(string("t")) << endl;
@@ -56,7 +63,9 @@ int trieTest()
 		t.remove(string("te"));
 		cout << m;
 		cout << t.root() << endl;
-		cout << hash256({{"test", "test"}}) << endl;
+        StringMap test3;
+        test3["test"] = "test";
+        cout << hash256(test3) << endl;
 
 		t.remove(string("test"));
 		cout << m;
@@ -72,7 +81,10 @@ int trieTest()
 		cout << t;
 		cout << m;
 		cout << t.root() << endl;
-		cout << hash256({{"b", "B"}, {"a", "A"}}) << endl;
+        StringMap test;
+        test["b"] = "B";
+        test["a"] = "A";
+        cout << hash256(test) << endl;
 		cout << RLP(rlp256({{"b", "B"}, {"a", "A"}})) << endl;
 	}
 	{
@@ -89,7 +101,12 @@ int trieTest()
 		cout << RLP(t.rlp()) << endl;
 	}
 	{
-		cout << hex << hash256({{"dog", "puppy"}, {"doe", "reindeer"}}) << endl;
+
+        StringMap test;
+        test["dog"] = "puppy";
+        test["doe"] = "reindeer";
+		cout << hex << hash256(test) << endl;
+		//cout << hex << hash256({{"dog", "puppy"}, {"doe", "reindeer"}}) << endl;
 		MemTrie t;
 		t.insert("dog", "puppy");
 		t.insert("doe", "reindeer");
